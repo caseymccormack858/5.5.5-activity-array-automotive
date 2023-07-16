@@ -10,7 +10,27 @@ class Vehicle {
         this.started = false;
         this.numberOfWheels = 0;
     }
+    const { Vehicle } = require('./vehicle');
 
+    class Car extends Vehicle {
+        constructor(make, model, year, color, mileage) {
+            super(make, model, year, color, mileage);
+            this.numberOfWheels = 4;
+        }
+    
+        autoPark() {
+            console.log("Car is parking automatically.");
+        }
+    
+        autoDrive() {
+            console.log("Car is driving autonomously.");
+        }
+    }
+    
+    module.exports = {
+        Car
+    };
+    
     start() {
         if (this.fuel > 0) {
             return this.started = true;
