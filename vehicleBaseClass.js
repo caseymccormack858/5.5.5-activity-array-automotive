@@ -12,24 +12,48 @@ class Vehicle {
     }
     const { Vehicle } = require('./vehicle');
 
-    class Car extends Vehicle {
-        constructor(make, model, year, color, mileage) {
-            super(make, model, year, color, mileage);
-            this.numberOfWheels = 4;
-        }
-    
-        autoPark() {
-            console.log("Car is parking automatically.");
-        }
-    
-        autoDrive() {
-            console.log("Car is driving autonomously.");
+class Car extends Vehicle {
+    constructor(make, model, year, color, mileage) {
+        super(make, model, year, color, mileage);
+        this.numberOfWheels = 4;
+        this.maximumPassengers = 5;
+        this.passengers = 0;
+        this.maximumSpeed = 160;
+        this.fuel = 10;
+        this.scheduleService = false;
+    }
+
+    loadPassenger(num) {
+        if (this.passengers < this.maximumPassengers) {
+            this.passengers += num;
+            console.log(`${num} passengers loaded.`);
+        } else {
+            console.log(`No room for ${num} passengers.`);
         }
     }
-    
-    module.exports = {
-        Car
-    };
+
+    start() {
+        if (this.fuel > 0) {
+            super.start();
+        } else {
+            console.log("Engine cannot start. Out of fuel.");
+        }
+    }
+
+    scheduleService(mileage) {
+        if (mileage > 30000) {
+            this.scheduleService = true;
+            console.log("Time for maintenance. Schedule service.");
+        } else {
+            console.log("No maintenance needed at this time.");
+        }
+    }
+}
+
+module.exports = {
+    Car
+};
+
     
     start() {
         if (this.fuel > 0) {
